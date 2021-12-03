@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { connectionOptions } from './config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(connectionOptions)]
+  imports: [TypeOrmModule.forRoot()]
 })
 export class DatabaseModule {}

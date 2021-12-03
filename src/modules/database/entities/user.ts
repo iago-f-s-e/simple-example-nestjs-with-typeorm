@@ -1,25 +1,33 @@
-import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
+import { randomUUID } from 'crypto';
+import { BeforeInsert, Column, Entity, Index, PrimaryColumn } from 'typeorm';
 import { IUser } from '../interfaces/user';
+
 
 @Entity('user')
 export class User implements IUser {
   @PrimaryColumn({ type: 'uuid', name: 'user_id' })
-  public readonly userId!: string;
+  public userId!: string;
 
   @Column({ type: 'varchar' })
-  public readonly name!: string;
+  public name!: string;
 
   @Index({ unique: true })
   @Column({ type: 'varchar' })
-  public readonly email!: string;
+  public email!: string;
 
   @Column({ type: 'varchar' })
-  public readonly password!: string;
+  public password!: string;
 
   @Column({ type: 'boolean', name: 'is_admin', default: false })
-  public readonly isAdmin!: boolean;
+  public isAdmin!: boolean;
 
   @Index({ unique: false })
   @Column({ type: 'boolean', name: 'is_active', default: false })
-  public readonly isActive!: boolean;
+  public isActive!: boolean;
+
+
+  @BeforeInsert()
+  protected setUserId (): void {
+    this.userId = randomUUID()
+  }
 }

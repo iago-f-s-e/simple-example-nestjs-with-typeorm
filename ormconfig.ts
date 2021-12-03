@@ -1,5 +1,12 @@
 import { ConnectionOptions } from 'typeorm';
-import * as Settings from './src/server/settings';
+
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+
+const dir = IS_PRODUCTION ? 'dist' : 'src';
+
+const path = `./${dir}/server/settings`;
+
+const Settings = require(path);
 
 const connectionOptions: ConnectionOptions = {
   type: 'postgres',

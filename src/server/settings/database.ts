@@ -1,6 +1,6 @@
-import { IS_DEVELOPMENT } from './server';
+import { IS_PRODUCTION } from './server';
 
-const dir = IS_DEVELOPMENT ? 'src' : 'dist';
+const dir = IS_PRODUCTION ? 'dist' : 'src';
 
 export const DATABASE_HOST = process.env.DATABASE_HOST || 'localhost';
 export const DATABASE_PORT = Number(process.env.DATABASE_PORT) || 5432;
